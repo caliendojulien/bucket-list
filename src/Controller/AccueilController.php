@@ -14,4 +14,11 @@ class AccueilController extends AbstractController
         return $this->render('accueil/index.html.twig', [
         ]);
     }
+
+    #[Route('/about_us', name: 'accueil_about_us')]
+    public function about_us(): Response
+    {
+        return $this->render('accueil/about_us.html.twig', [
+        ]);
+    }
 }
