@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}BucketList{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+</head>
+<body>
+<header>
+    <img src="{{ asset('img/logo.png') }}" alt="logo">
+</header>
+<nav>
+    <ul>
+        <li><a href="{{ path('accueil_index') }}">Accueil</a></li>
+    </ul>
+</nav>
+<main>
+    {% block body %}{% endblock %}
+</main>
+<footer>&copy; {{ "now" | date('Y') }}</footer>
+</body>
+</html>
