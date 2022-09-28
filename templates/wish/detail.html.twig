@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <ul>
+        <li>{{ wish.title }}</li>
+        <li>{{ wish.description }}</li>
+        <li>{{ wish.dateCreated | date('d/m/Y H:i:s', 'Europe/Paris') }}</li>
+    </ul>
 {% endblock %}
 
 {% block title %}
