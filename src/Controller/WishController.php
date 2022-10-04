@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\Repository\UserRepository;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,12 +45,19 @@ class WishController extends AbstractController
     )]
     public function ajout(
         Request                $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        UserRepository         $userRepository
     ): Response
     {
         $wish = new Wish();
+//        $utilisateur = $userRepository->findOneBy(
+//            ['email' => $this->getUser()->getUserIdentifier()]
+//        );
+        $utilisateur = $userRepository->findOneBy(
+            ['username' => $this->getUser()->getUserIdentifier()]
+        );
+        $wish->setAuthor($utilisateur->getUsername());
         $formWish = $this->createForm(WishType::class, $wish);
-
         $formWish->handleRequest($request);
 
         if ($formWish->isSubmitted() && $formWish->isValid()) {

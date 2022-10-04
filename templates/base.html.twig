@@ -8,14 +8,21 @@
 <body>
 <header>
     <img src="{{ asset('img/logo.png') }}" alt="logo">
-    <img src="{{ asset('img/logo.png') }}" alt="">
 </header>
 <nav>
     <ul>
         <li><a href="{{ path('accueil_index') }}">Accueil</a></li>
-        <li><a href="{{ path('accueil_about_us') }}">About us</a></li>
+        {% if is_granted("ROLE_ADMIN") %}
+            <li><a href="{{ path('accueil_about_us') }}">About us</a></li>
+        {% endif %}
         <li><a href="{{ path('wish_liste') }}">Liste des souhaits</a></li>
-        <li><a href="{{ path('wish_ajout') }}">Ajout un souhait</a></li>
+        {% if app.user %}
+            <li><a href="{{ path('wish_ajout') }}">Ajout un souhait</a></li>
+        {% endif %}
+        {% if not app.user %}
+            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+            <li><a href="{{ path('app_register') }}">S'enregistrer</a></li>
+        {% endif %}
     </ul>
 </nav>
 <main>

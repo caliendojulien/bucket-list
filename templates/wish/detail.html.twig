@@ -5,6 +5,7 @@
         <li>{{ wish.title }}</li>
         <li>{{ wish.description }}</li>
         <li>{{ wish.dateCreated | date('d/m/Y H:i:s', 'Europe/Paris') }}</li>
+        <li>{{ wish.category.name }}</li>
     </ul>
 {% endblock %}
 
